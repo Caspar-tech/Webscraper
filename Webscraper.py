@@ -19,7 +19,7 @@ for BIG in BIG_list:
     session = HTMLSession()
     response = session.get(url)
 
-    response.html.render()
+    response.html.render(sleep=0.2)
 
     text = response.html.text
     print(text)
