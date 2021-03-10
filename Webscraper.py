@@ -1,12 +1,12 @@
 from requests_html import HTMLSession
 from openpyxl import load_workbook
-from openpyxl.styles import Font, Color, colors, PatternFill
+from openpyxl.styles import PatternFill
 
 # Test BIG-numbers
 # BIG geldig maar geen HA
-#BIG = 59919419601
+#BIG = 99924036101 Franken
 # BIG huisarts
-#BIG = 19059287401
+#BIG = 19059287401 Jansen
 # BIG ongeldig
 #BIG = 59919419602
 
@@ -47,19 +47,20 @@ for cell in col:
         print(cell.value)
         if Check_BIG_Huisartsgeneeskunde > -1:
             Outcome = "BIG is gekoppeld aan huisarts"
-            Cell_fill_color = "99CC00"
+            Cell_fill_color = "99CC00" #Green
         elif Check_BIG_Naam > -1:
             Outcome = "BIG is geldig, maar geen huisarts"
-            Cell_fill_color = "FF9900"
+            Cell_fill_color = "FF9900" #Orange
         else:
             Outcome = "BIG levert geen resultaat op"
-            Cell_fill_color = "FF0000"
+            Cell_fill_color = "FF0000" #Red
 
         print(Outcome)
-        # We store the outcome in the column (+1) the cell right of the BIG-number
-        One_cell_to_the_right = ws.cell(row=(cell.row), column=(cell.column + 1))
-        One_cell_to_the_right.fill = PatternFill("solid", start_color=Cell_fill_color)
-        ws.cell(row=(cell.row), column=(cell.column + 1), value=Outcome)
+        # We store the outcome in the column (+2) the cell right of the BIG-number
+        Two_cells_to_the_right = ws.cell(row=(cell.row), column=(cell.column + 2))
+        Two_cells_to_the_right.value = Outcome
+        # We change the color of the cell depending on the outcome
+        Two_cells_to_the_right.fill = PatternFill("solid", start_color=Cell_fill_color)
 
         print("------------------------------------")
 
