@@ -31,6 +31,7 @@ for BIG in BIG_list:
     # We use parsing to searh the text
     # only when a BIG-number is true the word "Naam" occurs
     # only when a true Big-number belongs to a huisarts the word "Huisartsgeneeskunde" occurs
+    # When the word does not occur it will produce "-1"
     Check_BIG_Naam = text.find("Naam")
     Check_BIG_Huisartsgeneeskunde = text.find("Huisartsgeneeskunde")
 
